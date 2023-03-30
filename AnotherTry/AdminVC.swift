@@ -14,10 +14,11 @@ import UIKit
 
 var property = "AdminPanelView"
 
+/*
 struct AdminVC: View {
     var body: some View {
         VStack {
-            NavigationLink("Add new article", destination: Lenta())
+            NavigationLink("Add new article", destination: AddArticleVC())
                 .foregroundColor(Color.black)
                 .frame(width: 200, height: 50)
                 .cornerRadius(8)
@@ -45,20 +46,27 @@ struct Lenta: View {
     @State var articleImage: UIImage?
     let storage = Storage.storage()
     let database = Database.database().reference()
+    let onArticleAdded: ([String: Any]) -> Void // closure to be called when an article is added
 
     var body: some View {
         VStack {
+            Text("Добавьте заголовок:")
             TextField("Enter article title", text: $articleTitle)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
 
+            Text("Добавьте текст:")
             TextField("Enter article text", text: $articleText)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
 
             if articleImage != nil {
                 Image(uiImage: articleImage!)
@@ -101,11 +109,7 @@ struct Lenta: View {
                             return
                         }
 
-                        let articleData = [
-                            "title": articleTitle,
-                            "text": articleText, // Add article text
-                            "imageURL": url?.absoluteString ?? ""
-                        ]
+                        let articleData = [                            "title": articleTitle,                            "text": articleText,                            "imageURL": url?.absoluteString ?? ""                        ]
                         database.child("article").child(articleID).setValue(articleData)
                     }
                 }
@@ -162,7 +166,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
     }
 }
-
+*/
 struct ARViewContainer: UIViewRepresentable {
     
     typealias UIViewType = ARSCNView
@@ -262,7 +266,13 @@ struct AdminTabBar: View {
     
     var body: some View {
         TabView {
-            AdminVC()
+            AddArticleVC()
+                .tabItem {
+                    Image(systemName: "pencil")
+                    Text("Article")
+                }
+            
+            ArticleListView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -370,10 +380,10 @@ struct AddArticleView: View {
             })
         }
     }
- */
 
 struct AdminVC_Previews: PreviewProvider {
     static var previews: some View {
         AdminVC()
     }
 }
+ */

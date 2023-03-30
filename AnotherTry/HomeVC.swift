@@ -8,44 +8,6 @@
 import SwiftUI
 import FirebaseAuth
 
-struct HomeVC: View {
-    var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack {
-                    
-                    NavigationLink(destination: CesarView(), label: {
-                        Image("Cesar")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 450, height: 230)
-                            .padding(5)
-                    })
-                    
-                    NavigationLink(destination: DiscobolView(), label: {
-                        Image("Discobol")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 450, height: 230)
-                            .padding(5)
-                    })
-                    
-                    NavigationLink(destination: StatueOfLiberty(), label: {
-                        Image("StatueOfLiberty")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 450, height: 230)
-                            .padding(5)
-                    })
-                    
-                    
-                }
-            }
-            .navigationTitle("Home")
-        }
-    }
-}
-
 struct SaveVC: View {
     var body: some View {
         NavigationView {
@@ -217,7 +179,7 @@ struct TabBarView: View {
     
     var body: some View {
         TabView {
-            HomeVC()
+            ArticleListView()
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -244,6 +206,6 @@ struct TabBarView: View {
 
 struct HomeVC_Previews: PreviewProvider {
     static var previews: some View {
-        HomeVC()
+        SaveVC()
     }
 }

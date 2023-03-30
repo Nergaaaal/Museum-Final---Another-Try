@@ -9,36 +9,52 @@ import SwiftUI
 import FirebaseStorage
 import FirebaseDatabase
 import UIKit
-
 /*
-struct AddNewArticle: View {
+struct AdminVC: View {
+    var body: some View {
+        VStack {
+            NavigationLink("Add new article", destination: Lenta())
+                .foregroundColor(Color.black)
+                .frame(width: 200, height: 50)
+                .cornerRadius(8)
+                .background(Color.gray)
+                .padding()
+            
+            NavigationLink("AR режим", destination: ARViewContainer())
+                .foregroundColor(Color.black)
+                .frame(width: 200, height: 50)
+                .cornerRadius(8)
+                .background(Color.gray)
+                .padding()
+            
+                    Text("Admin Panel")
+                    
+                    Spacer()
+                }
+    }
+}
+
+struct Lenta: View {
     @State var showImagePicker = false
     @State var articleTitle = ""
     @State var articleText = ""
     @State var articleImage: UIImage?
     let storage = Storage.storage()
     let database = Database.database().reference()
-    let onArticleAdded: ([String: Any]) -> Void // closure to be called when an article is added
 
     var body: some View {
         VStack {
-            Text("Добавьте заголовок:")
             TextField("Enter article title", text: $articleTitle)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
 
-            Text("Добавьте текст:")
             TextField("Enter article text", text: $articleText)
                 .padding(.horizontal, 20)
                 .padding(.vertical, 10)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(10)
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
 
             if articleImage != nil {
                 Image(uiImage: articleImage!)
@@ -81,9 +97,12 @@ struct AddNewArticle: View {
                             return
                         }
 
-                        let articleData = [                            "title": articleTitle,                            "text": articleText,                            "imageURL": url?.absoluteString ?? ""                        ]
+                        let articleData = [
+                            "title": articleTitle,
+                            "text": articleText, // Add article text
+                            "imageURL": url?.absoluteString ?? ""
+                        ]
                         database.child("article").child(articleID).setValue(articleData)
-                        onArticleAdded(articleData) // call the closure with the new article data
                     }
                 }
             }) {
@@ -99,43 +118,42 @@ struct AddNewArticle: View {
 }
 
 struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
     var completionHandler: (UIImage?) -> Void
-    
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        picker.sourceType = sourceType
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {
+
+    }
+
     func makeCoordinator() -> Coordinator {
-        Coordinator(completionHandler: completionHandler)
+        Coordinator(self)
     }
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = context.coordinator
-        return imagePicker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        // No update needed
-    }
-    
+
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        var completionHandler: (UIImage?) -> Void
-        
-        init(completionHandler: @escaping (UIImage?) -> Void) {
-            self.completionHandler = completionHandler
+        let parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
         }
-        
+
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                completionHandler(image)
-            } else {
-                completionHandler(nil)
+            if let image = info[.originalImage] as? UIImage {
+                parent.completionHandler(image)
             }
-            picker.dismiss(animated: true, completion: nil)
+            parent.presentationMode.wrappedValue.dismiss()
         }
-        
+
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            completionHandler(nil)
-            picker.dismiss(animated: true, completion: nil)
+            parent.completionHandler(nil)
+            parent.presentationMode.wrappedValue.dismiss()
         }
     }
 }
@@ -220,12 +238,12 @@ struct Lenta: View {
     }
     
     func uploadToDatabase() {
-        let key = databaseRef.child("test").childByAutoId().key
-        databaseRef.child("test").child(key!).setValue(textInput)
+        let key = databaseRef.child("article").childByAutoId().key
+        databaseRef.child("article").child(key!).setValue(textInput)
     }
     
     func uploadToStorage() {
-        let imageRef = storageRef.child("test/image.jpg")
+        let imageRef = storageRef.child("article/image.jpg")
         guard let imageData = UIImage(named: "example-image")?.jpegData(compressionQuality: 0.8) else {
             return
         }
