@@ -7,10 +7,12 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseDatabase
 
 class AppViewModel: ObservableObject {
     
     let auth = Auth.auth()
+    let database = Database.database().reference()
     
     @Published var signedIn = false
     @Published var isAdmin = false
@@ -49,13 +51,26 @@ class AppViewModel: ObservableObject {
     
     func signUp(email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
+            guard let user = result?.user, error == nil else {
                 return
             }
             
             DispatchQueue.main.async {
+                self?.isAdmin = result?.user.email == "amangeldiyev.nurbol@gmail.com"
                 //Success
                 self?.signedIn = true
+                
+                // Save isAdmin to UserDefaults
+                UserDefaults.standard.set(self?.isAdmin, forKey: "isAdmin")
+                
+                // Record user's UID and email in database
+                let userData = ["uid": user.uid, "email": user.email ?? ""]
+                let databaseRef = Database.database().reference().child("users").child(user.uid)
+                databaseRef.setValue(userData) { error, _ in
+                    if let error = error {
+                        print("Error saving user data: \(error.localizedDescription)")
+                    }
+                }
             }
         }
     }
@@ -230,8 +245,6 @@ struct SignUpView: View {
         .navigationTitle("Create Account")
     }
 }
-
-
 
 let user = Auth.auth().currentUser
 

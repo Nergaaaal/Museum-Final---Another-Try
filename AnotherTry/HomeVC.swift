@@ -13,16 +13,8 @@ struct SaveVC: View {
         NavigationView {
             VStack {
                 ScrollView {
-                    NavigationLink(destination: CesarView(), label: {
+                    NavigationLink(destination: ArticleListView(), label: {
                         Image("Cesar")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 450, height: 230)
-                            .padding(5)
-                    })
-                    
-                    NavigationLink(destination: StatueOfLiberty(), label: {
-                        Image("StatueOfLiberty")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 450, height: 230)
@@ -35,59 +27,37 @@ struct SaveVC: View {
     }
 }
 
-class SettingsViewModel: ObservableObject {
-    
-    var property = "SettingVC"
-    
-    let auth = Auth.auth()
-    
-    @Published var signedIn = false
-    
-    var isSignedIn: Bool {
-        return auth.currentUser != nil
-    }
-    
-    func signIn(email: String, password: String) {
-        auth.signIn(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
-                return
-            }
-            DispatchQueue.main.async {
-                //Success
-                self?.signedIn = true
-            }
-        }
-    }
-    
-    func signUp(email: String, password: String) {
-        auth.createUser(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                //Success
-                self?.signedIn = true
-            }
-        }
-    }
-    
-    func signOut() {
-        try? auth.signOut()
-        
-        self.signedIn = false
-    }
-}
-
-
 struct SettingVC: View {
     
     @EnvironmentObject var viewModel: AppViewModel
+    @State private var showingPasswordReset = false
     
     var body: some View {
-        NavigationView{
-            List{
-                    
+        NavigationView {
+            List {
+                Group {
+                    if let user = Auth.auth().currentUser {
+                        Text("Профиль")
+                            .foregroundColor(Color.gray)
+                            .font(.system(size: 21))
+                            .padding(5)
+                            .listRowInsets(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: -20))
+                        HStack{
+                            Image(systemName: "person")
+                            Text(user.email ?? "")
+                                .padding(5)
+                        }
+                    }
+                    Button(action: {
+                        showingPasswordReset = true
+                    }, label: {
+                        HStack {
+                            Image(systemName: "key")
+                            Text("Сбросить пароль")
+                        }
+                    })
+                }
+                Group {
                     Text("Настройки приложения")
                         .foregroundColor(Color.gray)
                         .font(.system(size: 21))
@@ -103,7 +73,8 @@ struct SettingVC: View {
                         }
                     })
                     .foregroundColor(Color.primary)
-                    
+                }
+                Group {
                     Text("Контакты и обратная связь")
                         .foregroundColor(Color.gray)
                         .font(.system(size: 21))
@@ -123,12 +94,20 @@ struct SettingVC: View {
                     }
                     
                     HStack{
-                        Image(systemName: "pencil")
-                            .padding(1)
-                        Link("Стать автором", destination: URL(string: "https://www.Google.com")!)
-                        
+                        Button(action: {
+                        let email = "Amangeldiyev.nurbol@gmail.com"
+                        guard let url = URL(string: "mailto:\(email)") else { return }
+                        UIApplication.shared.open(url)
+                        }) {
+                            HStack{
+                                Image(systemName: "pencil")
+                                .padding(1)
+                                Text("Стать автором")
+                            }
+                        }
                     }
-                    
+                }
+                Group {
                     Button(action: {
                         viewModel.signOut()
                     }, label: {
@@ -140,29 +119,76 @@ struct SettingVC: View {
                         }
                     })
                 }
+            }
             .navigationTitle("Настройки")
             .foregroundColor(Color.primary)
             .background(Color.white)
+            .sheet(isPresented: $showingPasswordReset, content: {PasswordResetView()
+            })
         }
+    }
+}
+
+struct PasswordResetView: View {
+    @State var email = ""
+    @State var showAlert = false
+    @State var alertMessage = ""
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text("Введите адрес электронной почты, чтобы сбросить пароль")
+                .font(.title)
+            TextField("Адрес электронной почты", text: $email)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            Button(action: {
+                if self.email.isEmpty {
+                    self.alertMessage = "Пожалуйста, введите адрес электронной почты"
+                    self.showAlert = true
+                } else {
+                    Auth.auth().sendPasswordReset(withEmail: self.email) { error in
+                        if error != nil {
+                            self.alertMessage = "Не удалось отправить запрос на сброс пароля: (error.localizedDescription)"
+                            self.showAlert = true
+                        } else {
+                            self.alertMessage = "Запрос на сброс пароля отправлен на ваш адрес электронной почты"
+                            self.showAlert = true
+                            self.email = ""
+                        }
+                    }
+                }
+            }, label: {
+                Text("Отправить запрос")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.blue)
+                    .cornerRadius(8)
+            })
+        }
+        .padding()
+        .alert(isPresented: $showAlert, content: {
+            Alert(title: Text(alertMessage), dismissButton: .default(Text("OK")))
+        })
     }
 }
 
 struct InterfaceView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
-    @State private var fontSize: CGFloat = 16
+    @AppStorage("fontSize") private var fontSize = 16.0
     
     var body: some View {
         NavigationView {
             VStack {
-                Picker ("Mode", selection: $isDarkMode) {
-                    Text("Light")
-                        .tag(false)
-                    Text("Dark")
-                        .tag(true)
-                }.pickerStyle(SegmentedPickerStyle())
-                    .padding()
+                HStack {
+                    Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
+                    Toggle(isOn: $isDarkMode) {
+                        Text("Dark Mode")
+
+                    }
+                }
+                .padding()
+                .padding(.top, 20)
                 
-                Stepper("Font size: \(Int(fontSize))", value: $fontSize, in: 10...30)
+                Stepper("Font size: \(Int(fontSize))", value: $fontSize, in: 10...25)
                                     .padding()
                 
                 Spacer()
@@ -170,9 +196,20 @@ struct InterfaceView: View {
         }
         .navigationTitle("Mode switch")
         .foregroundColor(Color.primary)
-        .font(.system(size: fontSize))
+        .environment(\.font, Font.system(size: fontSize)) // set font size for all views in the view hierarchy
+        .onAppear {
+            // Restore saved font size on app launch
+            if let savedFontSize = UserDefaults.standard.value(forKey: "fontSize") as? Double {
+                fontSize = savedFontSize
+            }
+        }
+        .onChange(of: fontSize) { value in
+            // Save font size when changed
+            UserDefaults.standard.set(value, forKey: "fontSize")
+        }
     }
 }
+
 
 struct TabBarView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
@@ -199,6 +236,40 @@ struct TabBarView: View {
                     Text("Settings")
                 }
                 .foregroundColor(Color.primary)
+        }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
+    }
+}
+
+struct AdminTabBar: View {
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
+    var body: some View {
+        TabView {
+            
+            ArticleListView()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
+                }
+            
+            SaveVC()
+                .tabItem {
+                    Image(systemName: "heart")
+                    Text("Save")
+                }
+            
+            SettingVC()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+            
+            ArticleTest()
+                .tabItem {
+                    Image(systemName: "pencil")
+                    Text("Article")
+                }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
     }

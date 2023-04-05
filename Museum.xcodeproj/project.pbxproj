@@ -8,15 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD064B47293B7E1D00F41815 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD064B46293B7E1D00F41815 /* HomeVC.swift */; };
-		BD064B49293B7E3400F41815 /* AdminVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD064B48293B7E3400F41815 /* AdminVC.swift */; };
-		BD3C3F7C29D0658000D0B1E5 /* Cesar.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BD3C3F7B29D0658000D0B1E5 /* Cesar.usdz */; };
-		BD3C3F8029D3863600D0B1E5 /* Dombra.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BD3C3F7F29D3863600D0B1E5 /* Dombra.usdz */; };
-		BD4D2EFE29A2004C0014DDC0 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4D2EFD29A2004C0014DDC0 /* Storyboard.storyboard */; };
-		BD4D2F1529B6FCC00014DDC0 /* Lenta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4D2F1429B6FCC00014DDC0 /* Lenta.swift */; };
-		BD5D9986293DB76000A079C7 /* CesarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D9985293DB76000A079C7 /* CesarView.swift */; };
-		BD5D9988293DB78E00A079C7 /* DiscobolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D9987293DB78E00A079C7 /* DiscobolView.swift */; };
-		BD5D998A293DB7AD00A079C7 /* StatueOfLiberty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5D9989293DB7AD00A079C7 /* StatueOfLiberty.swift */; };
-		BD990D3C29BADB4300537719 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD990D3B29BADB4300537719 /* GoogleService-Info.plist */; };
+		BD7683D329DDD48C0037564A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD7683D229DDD48C0037564A /* GoogleService-Info.plist */; };
 		BDAE876B29376840007A430E /* AnotherTryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE876A29376840007A430E /* AnotherTryApp.swift */; };
 		BDAE876D29376840007A430E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE876C29376840007A430E /* ContentView.swift */; };
 		BDAE876F29376841007A430E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDAE876E29376841007A430E /* Assets.xcassets */; };
@@ -24,8 +16,8 @@
 		BDAE877C29376841007A430E /* AnotherTryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE877B29376841007A430E /* AnotherTryTests.swift */; };
 		BDAE878629376842007A430E /* AnotherTryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE878529376842007A430E /* AnotherTryUITests.swift */; };
 		BDAE878829376842007A430E /* AnotherTryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE878729376842007A430E /* AnotherTryUITestsLaunchTests.swift */; };
-		BDD9C6B329D4B2B70017FFF7 /* AddArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C6B229D4B2B70017FFF7 /* AddArticleVC.swift */; };
 		BDD9C6B529D596DE0017FFF7 /* HomeTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C6B429D596DE0017FFF7 /* HomeTestVC.swift */; };
+		BDD9C6B729D5B8DD0017FFF7 /* ArticleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C6B629D5B8DD0017FFF7 /* ArticleTest.swift */; };
 		F4E232864FD9F94CF8602E54 /* Pods_AnotherTry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155A95700CB9663FB5712684 /* Pods_AnotherTry.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,17 +42,9 @@
 		155A95700CB9663FB5712684 /* Pods_AnotherTry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnotherTry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B859D6B3E6DE9D8C4E7BA8DD /* Pods-AnotherTry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnotherTry.release.xcconfig"; path = "Target Support Files/Pods-AnotherTry/Pods-AnotherTry.release.xcconfig"; sourceTree = "<group>"; };
 		BD064B46293B7E1D00F41815 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
-		BD064B48293B7E3400F41815 /* AdminVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVC.swift; sourceTree = "<group>"; };
-		BD3C3F7B29D0658000D0B1E5 /* Cesar.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Cesar.usdz; path = ../../../../../../Downloads/Cesar.usdz; sourceTree = "<group>"; };
-		BD3C3F7F29D3863600D0B1E5 /* Dombra.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Dombra.usdz; path = "../../../../../3D Models/Dombra.usdz"; sourceTree = "<group>"; };
-		BD4D2EFD29A2004C0014DDC0 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
-		BD4D2F1429B6FCC00014DDC0 /* Lenta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lenta.swift; sourceTree = "<group>"; };
-		BD5D9985293DB76000A079C7 /* CesarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CesarView.swift; sourceTree = "<group>"; };
-		BD5D9987293DB78E00A079C7 /* DiscobolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscobolView.swift; sourceTree = "<group>"; };
-		BD5D9989293DB7AD00A079C7 /* StatueOfLiberty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatueOfLiberty.swift; sourceTree = "<group>"; };
-		BD990D3B29BADB4300537719 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BD7683D229DDD48C0037564A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDA7BCA92938D274005AB434 /* MyScene.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = MyScene.rcproject; sourceTree = "<group>"; };
-		BDAE876729376840007A430E /* AnotherTry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnotherTry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDAE876729376840007A430E /* Museum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Museum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAE876A29376840007A430E /* AnotherTryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherTryApp.swift; sourceTree = "<group>"; };
 		BDAE876C29376840007A430E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BDAE876E29376841007A430E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,8 +54,8 @@
 		BDAE878129376842007A430E /* AnotherTryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnotherTryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAE878529376842007A430E /* AnotherTryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherTryUITests.swift; sourceTree = "<group>"; };
 		BDAE878729376842007A430E /* AnotherTryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherTryUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BDD9C6B229D4B2B70017FFF7 /* AddArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleVC.swift; sourceTree = "<group>"; };
 		BDD9C6B429D596DE0017FFF7 /* HomeTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTestVC.swift; sourceTree = "<group>"; };
+		BDD9C6B629D5B8DD0017FFF7 /* ArticleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTest.swift; sourceTree = "<group>"; };
 		E1BBDF3C6570A1D2A831CDF9 /* Pods-AnotherTry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnotherTry.debug.xcconfig"; path = "Target Support Files/Pods-AnotherTry/Pods-AnotherTry.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,25 +102,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD3C3F7A29D0655C00D0B1E5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				BD3C3F7B29D0658000D0B1E5 /* Cesar.usdz */,
-				BD3C3F7F29D3863600D0B1E5 /* Dombra.usdz */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		BD5D9984293DB74000A079C7 /* ModelView */ = {
-			isa = PBXGroup;
-			children = (
-				BD5D9989293DB7AD00A079C7 /* StatueOfLiberty.swift */,
-				BD5D9987293DB78E00A079C7 /* DiscobolView.swift */,
-				BD5D9985293DB76000A079C7 /* CesarView.swift */,
-			);
-			path = ModelView;
-			sourceTree = "<group>";
-		};
 		BDAE875E29376840007A430E = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +117,7 @@
 		BDAE876829376840007A430E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BDAE876729376840007A430E /* AnotherTry.app */,
+				BDAE876729376840007A430E /* Museum.app */,
 				BDAE877729376841007A430E /* AnotherTryTests.xctest */,
 				BDAE878129376842007A430E /* AnotherTryUITests.xctest */,
 			);
@@ -162,20 +127,15 @@
 		BDAE876929376840007A430E /* AnotherTry */ = {
 			isa = PBXGroup;
 			children = (
-				BD3C3F7A29D0655C00D0B1E5 /* Models */,
-				BD5D9984293DB74000A079C7 /* ModelView */,
 				BDAE876A29376840007A430E /* AnotherTryApp.swift */,
 				BDAE876C29376840007A430E /* ContentView.swift */,
-				BD990D3B29BADB4300537719 /* GoogleService-Info.plist */,
 				BDAE876E29376841007A430E /* Assets.xcassets */,
+				BD7683D229DDD48C0037564A /* GoogleService-Info.plist */,
 				BDAE877029376841007A430E /* Preview Content */,
 				BDA7BCA92938D274005AB434 /* MyScene.rcproject */,
-				BD064B48293B7E3400F41815 /* AdminVC.swift */,
 				BD064B46293B7E1D00F41815 /* HomeVC.swift */,
-				BD4D2EFD29A2004C0014DDC0 /* Storyboard.storyboard */,
-				BD4D2F1429B6FCC00014DDC0 /* Lenta.swift */,
-				BDD9C6B229D4B2B70017FFF7 /* AddArticleVC.swift */,
 				BDD9C6B429D596DE0017FFF7 /* HomeTestVC.swift */,
+				BDD9C6B629D5B8DD0017FFF7 /* ArticleTest.swift */,
 			);
 			path = AnotherTry;
 			sourceTree = "<group>";
@@ -208,9 +168,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BDAE876629376840007A430E /* AnotherTry */ = {
+		BDAE876629376840007A430E /* Museum */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "AnotherTry" */;
+			buildConfigurationList = BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "Museum" */;
 			buildPhases = (
 				534942AD3A62926A1712ADC6 /* [CP] Check Pods Manifest.lock */,
 				BDAE876329376840007A430E /* Sources */,
@@ -222,9 +182,9 @@
 			);
 			dependencies = (
 			);
-			name = AnotherTry;
+			name = Museum;
 			productName = AnotherTry;
-			productReference = BDAE876729376840007A430E /* AnotherTry.app */;
+			productReference = BDAE876729376840007A430E /* Museum.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BDAE877629376841007A430E /* AnotherTryTests */ = {
@@ -286,7 +246,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BDAE876229376840007A430E /* Build configuration list for PBXProject "AnotherTry" */;
+			buildConfigurationList = BDAE876229376840007A430E /* Build configuration list for PBXProject "Museum" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -299,7 +259,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BDAE876629376840007A430E /* AnotherTry */,
+				BDAE876629376840007A430E /* Museum */,
 				BDAE877629376841007A430E /* AnotherTryTests */,
 				BDAE878029376842007A430E /* AnotherTryUITests */,
 			);
@@ -312,11 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDAE877229376841007A430E /* Preview Assets.xcassets in Resources */,
-				BD3C3F7C29D0658000D0B1E5 /* Cesar.usdz in Resources */,
-				BD3C3F8029D3863600D0B1E5 /* Dombra.usdz in Resources */,
-				BD990D3C29BADB4300537719 /* GoogleService-Info.plist in Resources */,
-				BD4D2EFE29A2004C0014DDC0 /* Storyboard.storyboard in Resources */,
 				BDAE876F29376841007A430E /* Assets.xcassets in Resources */,
+				BD7683D329DDD48C0037564A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,13 +343,8 @@
 				BDAE876D29376840007A430E /* ContentView.swift in Sources */,
 				BDD9C6B529D596DE0017FFF7 /* HomeTestVC.swift in Sources */,
 				BD064B47293B7E1D00F41815 /* HomeVC.swift in Sources */,
-				BD5D998A293DB7AD00A079C7 /* StatueOfLiberty.swift in Sources */,
-				BD5D9986293DB76000A079C7 /* CesarView.swift in Sources */,
-				BD4D2F1529B6FCC00014DDC0 /* Lenta.swift in Sources */,
-				BDD9C6B329D4B2B70017FFF7 /* AddArticleVC.swift in Sources */,
-				BD064B49293B7E3400F41815 /* AdminVC.swift in Sources */,
 				BDAE876B29376840007A430E /* AnotherTryApp.swift in Sources */,
-				BD5D9988293DB78E00A079C7 /* DiscobolView.swift in Sources */,
+				BDD9C6B729D5B8DD0017FFF7 /* ArticleTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,12 +370,12 @@
 /* Begin PBXTargetDependency section */
 		BDAE877929376841007A430E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BDAE876629376840007A430E /* AnotherTry */;
+			target = BDAE876629376840007A430E /* Museum */;
 			targetProxy = BDAE877829376841007A430E /* PBXContainerItemProxy */;
 		};
 		BDAE878329376842007A430E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BDAE876629376840007A430E /* AnotherTry */;
+			target = BDAE876629376840007A430E /* Museum */;
 			targetProxy = BDAE878229376842007A430E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -560,6 +512,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -590,6 +543,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -682,7 +636,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BDAE876229376840007A430E /* Build configuration list for PBXProject "AnotherTry" */ = {
+		BDAE876229376840007A430E /* Build configuration list for PBXProject "Museum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BDAE878929376842007A430E /* Debug */,
@@ -691,7 +645,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "AnotherTry" */ = {
+		BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "Museum" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BDAE878C29376842007A430E /* Debug */,
