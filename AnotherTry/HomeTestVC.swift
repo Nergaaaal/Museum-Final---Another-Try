@@ -15,6 +15,7 @@ import ARKit
 
 struct Article: Identifiable, Hashable {
     let id: String
+    let publishDate: Date
     let title: String
     let text: String
     let imageURL: String
@@ -26,6 +27,7 @@ struct Article: Identifiable, Hashable {
 
 struct Favorite: Identifiable, Hashable {
     var id: String
+    let publishDate: Date
     var title: String
     var text: String
     var imageURL: String
@@ -34,6 +36,7 @@ struct Favorite: Identifiable, Hashable {
     
     init(id: String, title: String, text: String, imageURL: String, image: UIImage?, modelURL: String?) {
         self.id = id
+        self.publishDate = Date()
         self.title = title
         self.text = text
         self.imageURL = imageURL
@@ -51,6 +54,7 @@ struct Favorite: Identifiable, Hashable {
         }
         
         self.id = id
+        self.publishDate = Date()
         self.title = title
         self.text = text
         self.imageURL = imageURL
@@ -91,11 +95,13 @@ class ArticleViewModel: ObservableObject {
                    let title = value["title"] as? String,
                    let text = value["text"] as? String,
                    let imageURL = value["imageURL"] as? String {
-                    let article = Article(id: snapshot.key, title: title, text: text, imageURL: imageURL, modelURL: value["modelURL"] as? String, image: nil)
+                    let publishDate = Date() // задаем значение даты публикации
+                    let article = Article(id: snapshot.key, publishDate: publishDate, title: title, text: text, imageURL: imageURL, modelURL: value["modelURL"] as? String, image: nil)
+
                     newArticles.append(article)
                 }
             }
-            newArticles.sort { $0.id > $1.id }
+            newArticles.sort { $0.publishDate < $1.publishDate }
             self.articles = newArticles
             
             for i in 0..<self.articles.count {
@@ -392,11 +398,12 @@ class ArticleModel: ObservableObject {
                    let text = value["text"] as? String,
                    let imageURL = value["imageURL"] as? String,
                    let modelURL = value["modelURL"] as? String { // добавляем модель в объект Article
-                    let article = Article(id: snapshot.key, title: title, text: text, imageURL: imageURL, modelURL: modelURL, image: nil)
+                    let publishDate = Date() // или любое другое значение даты
+                    let article = Article(id: snapshot.key, publishDate: publishDate, title: title, text: text, imageURL: imageURL, modelURL: modelURL, image: nil)
                     newArticles.append(article)
                 }
             }
-            newArticles.sort { $0.id > $1.id }
+            newArticles.sort { $0.publishDate < $1.publishDate }
             self.articles = newArticles
             
             for i in 0..<self.articles.count {

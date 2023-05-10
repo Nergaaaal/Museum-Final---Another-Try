@@ -15,11 +15,13 @@ struct ArticleTest: View {
     @State var showImagePicker = false
     @State var showModelPicker = false
     @State private var isUploading = false
+    @State private var showingAlert = false
     @State var articleTitle = ""
     @State var articleText = ""
     @State var articleImage: UIImage?
     @State var articleModel: URL?
     @State var articleID = UUID().uuidString
+    @State var publishDate = Date()
     
     let storage = Storage.storage()
     let database = Database.database().reference()
@@ -30,15 +32,19 @@ struct ArticleTest: View {
                 VStack {
                     Spacer()
                     Text("Enter article title:")
-                    TextField("Enter article title", text: $articleTitle)
-                        .padding(.horizontal, 20)
+                    TextEditor(text: $articleTitle)
+                        .frame(minHeight: 40)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding(.horizontal, 10)
                         .padding(.vertical, 10)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
                     
                     Text("Enter article text:")
-                    TextField("Enter article text", text: $articleText)
-                        .padding(.horizontal, 20)
+                    TextEditor(text: $articleText)
+                        .frame(minHeight: 40)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .padding(.horizontal, 10)
                         .padding(.vertical, 10)
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
@@ -91,13 +97,18 @@ struct ArticleTest: View {
                         }
                         
                         Button(action: {
-                            var articleData = [
-                                "id": articleID,
-                                "title": articleTitle,
-                                "text": articleText,
-                                "imageURL": "",
-                                "modelURL": ""
-                            ]
+                            isUploading = true
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
+                            let dateString = dateFormatter.string(from: publishDate)
+                                var articleData = [
+                                    "id": articleID,
+                                    "title": articleTitle,
+                                    "text": articleText,
+                                    "imageURL": "",
+                                    "modelURL": "",
+                                    "publishDate": dateString
+                                ]
                             
                             let dispatchGroup = DispatchGroup()
                             dispatchGroup.enter()
@@ -162,6 +173,7 @@ struct ArticleTest: View {
                                 articleText = ""
                                 articleImage = nil
                                 articleModel = nil
+                                showingAlert = true
                             }
                         }) {
                             Text("Submit Article")
@@ -179,6 +191,21 @@ struct ArticleTest: View {
             }
             .padding()
             .navigationBarTitle("New Article")
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text("Article Added"), message: Text("The article has been successfully added."), dismissButton: .default(Text("OK")))
+            }
+            .sheet(isPresented: $isUploading, content: {
+                ZStack {
+                    Color.white
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(2)
+                        .padding()
+                }
+            })
         }
     }
 }

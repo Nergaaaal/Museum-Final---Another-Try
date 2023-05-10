@@ -38,11 +38,11 @@ class ArticleSaveViewModel: ObservableObject {
                    let title = value["title"] as? String,
                    let text = value["text"] as? String,
                    let imageURL = value["imageURL"] as? String {
-                    let article = Article(id: snapshot.key, title: title, text: text, imageURL: imageURL, modelURL: value["modelURL"] as? String, image: nil)
+                    let article = Article(id: snapshot.key, publishDate: Date(), title: title, text: text, imageURL: imageURL, modelURL: value["modelURL"] as? String, image: nil)
                     newArticles.append(article)
                 }
             }
-            newArticles.sort { $0.id > $1.id }
+            newArticles.sort { $0.publishDate < $1.publishDate }
             self.articles = newArticles
             
             for i in 0..<self.articles.count {
