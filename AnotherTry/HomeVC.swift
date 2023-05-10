@@ -7,7 +7,117 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import SDWebImageSwiftUI
+import RealityKit
+import ARKit
 
+class ArticleSaveViewModel: ObservableObject {
+    @Published var articles: [Article] = []
+    
+    func filteredArticles(searchText: String) -> [Article] {
+            if searchText.isEmpty {
+                return articles
+            } else {
+                return articles.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+            }
+        }
+    
+    init() {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            // Обработка ошибки, если пользователь не авторизован
+            return
+        }
+        let ref = Database.database().reference().child("users/\(uid)/favorites")
+        ref.observe(.value) { snapshot in
+            var newArticles: [Article] = []
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                   let value = snapshot.value as? [String: Any],
+                   let title = value["title"] as? String,
+                   let text = value["text"] as? String,
+                   let imageURL = value["imageURL"] as? String {
+                    let article = Article(id: snapshot.key, title: title, text: text, imageURL: imageURL, modelURL: value["modelURL"] as? String, image: nil)
+                    newArticles.append(article)
+                }
+            }
+            newArticles.sort { $0.id > $1.id }
+            self.articles = newArticles
+            
+            for i in 0..<self.articles.count {
+                let article = self.articles[i]
+                if let url = URL(string: article.imageURL) {
+                    SDWebImageManager.shared.loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+                        if let image = image {
+                            DispatchQueue.main.async {
+                                self.articles[i].image = image
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct SaveVC: View {
+    @ObservedObject var viewModel = ArticleSaveViewModel()
+    @State private var searchText = ""
+    
+    @Environment(\.font) var font
+
+    var body: some View {
+        NavigationView {
+            if viewModel.articles.isEmpty {
+                VStack {
+                    ProgressView()
+                        .padding(10)
+                    Text("Loading articles...")
+                }
+            } else {
+                List(viewModel.filteredArticles(searchText: searchText)) { article in
+                    NavigationLink(destination: ArticleDetailView(article: article)) {
+                        if let image = article.image {
+                            Spacer().frame(width: 16)
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 360, height: 230)
+                                .clipped()
+                                .overlay(
+                                    
+                                    VStack {
+                                        Spacer()
+                                        Text(article.title)
+                                            
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.center)
+                                            .padding(.horizontal, 10)
+                                            .padding(.bottom, 10)
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                                            .font(.system(size: UIFont.preferredFont(forTextStyle: .body).pointSize * 1.5))
+                                    }
+                                    .background(Color.black.opacity(0.2))
+                                )
+                        } else {
+                            Rectangle()
+                                .foregroundColor(.gray)
+                                .frame(height: 230)
+                        }
+                    }
+                    .listRowInsets(EdgeInsets())
+                    .padding()
+                }
+                .listStyle(PlainListStyle())
+                
+                .searchable(text: $searchText) {
+                }
+            }
+        }
+    }
+}
+/*
 struct SaveVC: View {
     var body: some View {
         NavigationView {
@@ -26,6 +136,7 @@ struct SaveVC: View {
         }
     }
 }
+ */
 
 struct SettingVC: View {
     
@@ -94,17 +205,17 @@ struct SettingVC: View {
                     }
                     
                     HStack{
-                        Button(action: {
-                        let email = "Amangeldiyev.nurbol@gmail.com"
-                        guard let url = URL(string: "mailto:\(email)") else { return }
-                        UIApplication.shared.open(url)
-                        }) {
-                            HStack{
-                                Image(systemName: "pencil")
-                                .padding(1)
-                                Text("Стать автором")
-                            }
-                        }
+                        Image(systemName: "map")
+                            .padding(1)
+                        Link("Посетить музей", destination: URL(string: "https://2gis.kz/almaty/firm/9429940001359005/76.930394%2C43.258497")!)
+                            
+                    }
+                    
+                    HStack{
+                        Image(systemName: "info")
+                            .padding(1)
+                        Link("О нас", destination: URL(string: "https://qyzpu.edu.kz/")!)
+                            
                     }
                 }
                 Group {
@@ -277,6 +388,6 @@ struct AdminTabBar: View {
 
 struct HomeVC_Previews: PreviewProvider {
     static var previews: some View {
-        SaveVC()
+        SettingVC()
     }
 }

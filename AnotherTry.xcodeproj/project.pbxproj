@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BD064B47293B7E1D00F41815 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD064B46293B7E1D00F41815 /* HomeVC.swift */; };
+		BD1BA49429E33047007F0259 /* Statue_of_Liberty.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BD1BA49329E33047007F0259 /* Statue_of_Liberty.usdz */; };
+		BD1BA49629E330CC007F0259 /* Der_Denker.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BD1BA49529E330CC007F0259 /* Der_Denker.usdz */; };
 		BD7683D329DDD48C0037564A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD7683D229DDD48C0037564A /* GoogleService-Info.plist */; };
 		BDAE876B29376840007A430E /* AnotherTryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE876A29376840007A430E /* AnotherTryApp.swift */; };
 		BDAE876D29376840007A430E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE876C29376840007A430E /* ContentView.swift */; };
@@ -18,6 +20,9 @@
 		BDAE878829376842007A430E /* AnotherTryUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDAE878729376842007A430E /* AnotherTryUITestsLaunchTests.swift */; };
 		BDD9C6B529D596DE0017FFF7 /* HomeTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C6B429D596DE0017FFF7 /* HomeTestVC.swift */; };
 		BDD9C6B729D5B8DD0017FFF7 /* ArticleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD9C6B629D5B8DD0017FFF7 /* ArticleTest.swift */; };
+		BDFFCE3929DF25470062DA38 /* Dombra.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BDFFCE3829DF25470062DA38 /* Dombra.usdz */; };
+		BDFFCE3B29DF25DE0062DA38 /* AdminVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFFCE3A29DF25DE0062DA38 /* AdminVC.swift */; };
+		BDFFCE3D29DFBF350062DA38 /* Cesar.usdz in Resources */ = {isa = PBXBuildFile; fileRef = BDFFCE3C29DFBF350062DA38 /* Cesar.usdz */; };
 		F4E232864FD9F94CF8602E54 /* Pods_AnotherTry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155A95700CB9663FB5712684 /* Pods_AnotherTry.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,9 +47,11 @@
 		155A95700CB9663FB5712684 /* Pods_AnotherTry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnotherTry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B859D6B3E6DE9D8C4E7BA8DD /* Pods-AnotherTry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnotherTry.release.xcconfig"; path = "Target Support Files/Pods-AnotherTry/Pods-AnotherTry.release.xcconfig"; sourceTree = "<group>"; };
 		BD064B46293B7E1D00F41815 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		BD1BA49329E33047007F0259 /* Statue_of_Liberty.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Statue_of_Liberty.usdz; path = "../../../../../Детали дипломки/3D Models/Statue_of_Liberty.usdz"; sourceTree = "<group>"; };
+		BD1BA49529E330CC007F0259 /* Der_Denker.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Der_Denker.usdz; path = "../../../../../Детали дипломки/3D Models/Der_Denker.usdz"; sourceTree = "<group>"; };
 		BD7683D229DDD48C0037564A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDA7BCA92938D274005AB434 /* MyScene.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = MyScene.rcproject; sourceTree = "<group>"; };
-		BDAE876729376840007A430E /* Museum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Museum.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDAE876729376840007A430E /* AnotherTry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnotherTry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDAE876A29376840007A430E /* AnotherTryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherTryApp.swift; sourceTree = "<group>"; };
 		BDAE876C29376840007A430E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BDAE876E29376841007A430E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,6 +63,9 @@
 		BDAE878729376842007A430E /* AnotherTryUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherTryUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BDD9C6B429D596DE0017FFF7 /* HomeTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTestVC.swift; sourceTree = "<group>"; };
 		BDD9C6B629D5B8DD0017FFF7 /* ArticleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTest.swift; sourceTree = "<group>"; };
+		BDFFCE3829DF25470062DA38 /* Dombra.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Dombra.usdz; path = ../../../../../../Downloads/Dombra.usdz; sourceTree = "<group>"; };
+		BDFFCE3A29DF25DE0062DA38 /* AdminVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminVC.swift; sourceTree = "<group>"; };
+		BDFFCE3C29DFBF350062DA38 /* Cesar.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Cesar.usdz; path = ../../../../../../Downloads/Cesar.usdz; sourceTree = "<group>"; };
 		E1BBDF3C6570A1D2A831CDF9 /* Pods-AnotherTry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnotherTry.debug.xcconfig"; path = "Target Support Files/Pods-AnotherTry/Pods-AnotherTry.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,7 +127,7 @@
 		BDAE876829376840007A430E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BDAE876729376840007A430E /* Museum.app */,
+				BDAE876729376840007A430E /* AnotherTry.app */,
 				BDAE877729376841007A430E /* AnotherTryTests.xctest */,
 				BDAE878129376842007A430E /* AnotherTryUITests.xctest */,
 			);
@@ -127,12 +137,14 @@
 		BDAE876929376840007A430E /* AnotherTry */ = {
 			isa = PBXGroup;
 			children = (
+				BDFFCE3729DF252E0062DA38 /* Models */,
 				BDAE876A29376840007A430E /* AnotherTryApp.swift */,
 				BDAE876C29376840007A430E /* ContentView.swift */,
 				BDAE876E29376841007A430E /* Assets.xcassets */,
 				BD7683D229DDD48C0037564A /* GoogleService-Info.plist */,
 				BDAE877029376841007A430E /* Preview Content */,
 				BDA7BCA92938D274005AB434 /* MyScene.rcproject */,
+				BDFFCE3A29DF25DE0062DA38 /* AdminVC.swift */,
 				BD064B46293B7E1D00F41815 /* HomeVC.swift */,
 				BDD9C6B429D596DE0017FFF7 /* HomeTestVC.swift */,
 				BDD9C6B629D5B8DD0017FFF7 /* ArticleTest.swift */,
@@ -165,12 +177,23 @@
 			path = AnotherTryUITests;
 			sourceTree = "<group>";
 		};
+		BDFFCE3729DF252E0062DA38 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BDFFCE3829DF25470062DA38 /* Dombra.usdz */,
+				BDFFCE3C29DFBF350062DA38 /* Cesar.usdz */,
+				BD1BA49329E33047007F0259 /* Statue_of_Liberty.usdz */,
+				BD1BA49529E330CC007F0259 /* Der_Denker.usdz */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BDAE876629376840007A430E /* Museum */ = {
+		BDAE876629376840007A430E /* AnotherTry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "Museum" */;
+			buildConfigurationList = BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "AnotherTry" */;
 			buildPhases = (
 				534942AD3A62926A1712ADC6 /* [CP] Check Pods Manifest.lock */,
 				BDAE876329376840007A430E /* Sources */,
@@ -182,9 +205,9 @@
 			);
 			dependencies = (
 			);
-			name = Museum;
+			name = AnotherTry;
 			productName = AnotherTry;
-			productReference = BDAE876729376840007A430E /* Museum.app */;
+			productReference = BDAE876729376840007A430E /* AnotherTry.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BDAE877629376841007A430E /* AnotherTryTests */ = {
@@ -246,7 +269,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BDAE876229376840007A430E /* Build configuration list for PBXProject "Museum" */;
+			buildConfigurationList = BDAE876229376840007A430E /* Build configuration list for PBXProject "AnotherTry" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -259,7 +282,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BDAE876629376840007A430E /* Museum */,
+				BDAE876629376840007A430E /* AnotherTry */,
 				BDAE877629376841007A430E /* AnotherTryTests */,
 				BDAE878029376842007A430E /* AnotherTryUITests */,
 			);
@@ -271,6 +294,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDFFCE3929DF25470062DA38 /* Dombra.usdz in Resources */,
+				BDFFCE3D29DFBF350062DA38 /* Cesar.usdz in Resources */,
+				BD1BA49629E330CC007F0259 /* Der_Denker.usdz in Resources */,
+				BD1BA49429E33047007F0259 /* Statue_of_Liberty.usdz in Resources */,
 				BDAE877229376841007A430E /* Preview Assets.xcassets in Resources */,
 				BDAE876F29376841007A430E /* Assets.xcassets in Resources */,
 				BD7683D329DDD48C0037564A /* GoogleService-Info.plist in Resources */,
@@ -344,6 +371,7 @@
 				BDD9C6B529D596DE0017FFF7 /* HomeTestVC.swift in Sources */,
 				BD064B47293B7E1D00F41815 /* HomeVC.swift in Sources */,
 				BDAE876B29376840007A430E /* AnotherTryApp.swift in Sources */,
+				BDFFCE3B29DF25DE0062DA38 /* AdminVC.swift in Sources */,
 				BDD9C6B729D5B8DD0017FFF7 /* ArticleTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,12 +398,12 @@
 /* Begin PBXTargetDependency section */
 		BDAE877929376841007A430E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BDAE876629376840007A430E /* Museum */;
+			target = BDAE876629376840007A430E /* AnotherTry */;
 			targetProxy = BDAE877829376841007A430E /* PBXContainerItemProxy */;
 		};
 		BDAE878329376842007A430E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BDAE876629376840007A430E /* Museum */;
+			target = BDAE876629376840007A430E /* AnotherTry */;
 			targetProxy = BDAE878229376842007A430E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -508,11 +536,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnotherTry/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera for augmented reality features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,11 +568,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnotherTry/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera for augmented reality features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -636,7 +666,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BDAE876229376840007A430E /* Build configuration list for PBXProject "Museum" */ = {
+		BDAE876229376840007A430E /* Build configuration list for PBXProject "AnotherTry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BDAE878929376842007A430E /* Debug */,
@@ -645,7 +675,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "Museum" */ = {
+		BDAE878B29376842007A430E /* Build configuration list for PBXNativeTarget "AnotherTry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BDAE878C29376842007A430E /* Debug */,
