@@ -6,6 +6,8 @@
 //
 
 import XCTest
+import Firebase
+
 @testable import AnotherTry
 
 final class AnotherTryTests: XCTestCase {

@@ -150,19 +150,17 @@ struct SignInView: View {
                     .background(Color(.secondarySystemBackground))
                 
                 Button(action: {
-                    
                     guard !email.isEmpty, !password.isEmpty else {
                         return
                     }
                     
                     viewModel.signIn(email: email, password: password)
-                    
                 }, label: {
                     Text("Sign in")
                         .foregroundColor(Color.black)
                         .frame(width: 200, height: 50)
-                        .cornerRadius(8)
                         .background(Color.gray)
+                        .cornerRadius(20)
                         .padding()
                 })
                 
@@ -222,19 +220,17 @@ struct SignUpView: View {
                     .background(Color(.secondarySystemBackground))
                 
                 Button(action: {
-                    
                     guard !email.isEmpty, !password.isEmpty else {
                         return
                     }
                     
                     viewModel.signUp(email: email, password: password)
-                    
                 }, label: {
                     Text("Create Account")
                         .foregroundColor(Color.black)
                         .frame(width: 200, height: 50)
-                        .cornerRadius(8)
                         .background(Color.gray)
+                        .cornerRadius(20)
                         .padding()
                 })
             }

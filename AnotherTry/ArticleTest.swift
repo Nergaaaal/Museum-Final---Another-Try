@@ -90,35 +90,41 @@ struct ArticleTest: View {
                                     .cornerRadius(10)
                             }
                             .sheet(isPresented: $showModelPicker) {
-                                DocumentPicker(allowedContentTypes: [.usdz]) { url in
+                                DocumentPicker(allowedContentTypes: [.usdz, UTType(filenameExtension: "obj")!, UTType(filenameExtension: "scn")!]) { url in
                                     self.articleModel = url
                                 }
                             }
                         }
                         
                         Button(action: {
+                            // Check if all required fields are filled
+                                if articleTitle.isEmpty || articleText.isEmpty || articleImage == nil || articleModel == nil {
+                                    return
+                                }
+                            
                             isUploading = true
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
                             let dateString = dateFormatter.string(from: publishDate)
-                                var articleData = [
-                                    "id": articleID,
-                                    "title": articleTitle,
-                                    "text": articleText,
-                                    "imageURL": "",
-                                    "modelURL": "",
-                                    "publishDate": dateString
-                                ]
-                            
+                            let articleID = database.child("article").childByAutoId().key ?? ""
+                            var articleData = [
+                                "id": articleID,
+                                "title": articleTitle,
+                                "text": articleText,
+                                "imageURL": "",
+                                "modelURL": "",
+                                "publishDate": dateString
+                            ]
+
                             let dispatchGroup = DispatchGroup()
+
                             dispatchGroup.enter()
                             // Upload article image
                             if let imageData = articleImage?.jpegData(compressionQuality: 0.5) {
-                                let articleID = database.child("article").childByAutoId().key ?? ""
                                 let imageRef = storage.reference().child("article_images").child("\(articleID).jpg")
                                 let metadata = StorageMetadata()
                                 metadata.contentType = "image/jpeg"
-                                let uploadTask = imageRef.putData(imageData, metadata: metadata) { metadata, error in
+                                _ = imageRef.putData(imageData, metadata: metadata) { metadata, error in
                                     if let error = error {
                                         print("Error uploading article image: \(error.localizedDescription)")
                                         return
@@ -137,15 +143,28 @@ struct ArticleTest: View {
                             } else {
                                 dispatchGroup.leave()
                             }
-                            
+
                             dispatchGroup.enter()
                             // Upload article 3D model
                             if let modelURL = articleModel {
-                                let articleID = database.child("article").childByAutoId().key ?? ""
-                                let modelRef = storage.reference().child("article_models").child("\(articleID).usdz")
+                                let modelRef: StorageReference
+                                let contentType: String
+                                if modelURL.pathExtension == "usdz" {
+                                        modelRef = storage.reference().child("article_models").child("\(articleID).usdz")
+                                        contentType = "model/vnd.usdz+zip"
+                                    } else if modelURL.pathExtension == "obj" {
+                                        modelRef = storage.reference().child("article_models").child("\(articleID).obj")
+                                        contentType = "model/vnd.obj"
+                                    } else if modelURL.pathExtension == "scn" {
+                                            modelRef = storage.reference().child("article_models").child("\(articleID).scn")
+                                            contentType = "model/vnd.scn"
+                                    } else {
+                                        dispatchGroup.leave()
+                                        return
+                                    }
                                 let metadata = StorageMetadata()
-                                metadata.contentType = "model/vnd.usdz+zip"
-                                let uploadTask = modelRef.putFile(from: modelURL, metadata: metadata) { metadata, error in
+                                metadata.contentType = contentType
+                                _ = modelRef.putFile(from: modelURL, metadata: metadata) { metadata, error in
                                     if let error = error {
                                         print("Error uploading article model: \(error.localizedDescription)")
                                         return
@@ -155,20 +174,25 @@ struct ArticleTest: View {
                                             print("Error getting article model download URL: \(error.localizedDescription)")
                                             return
                                         }
+                                        
                                         if let url = url {
-                                            articleData["modelURL"] = url.absoluteString
+                                            // Remove the port 443 from the URL string
+                                            var urlString = url.absoluteString
+                                            urlString = urlString.replacingOccurrences(of: ":443", with: "")
+                                            articleData["modelURL"] = urlString
                                         }
+                                    
                                         dispatchGroup.leave()
                                     }
                                 }
                             } else {
                                 dispatchGroup.leave()
                             }
-                            
+
                             // Wait for both uploads to complete
                             dispatchGroup.notify(queue: DispatchQueue.main) {
                                 isUploading = false
-                                database.child("article").child(articleID).setValue(articleData)
+                                database.child("article").childByAutoId().setValue(articleData)
                                 articleTitle = ""
                                 articleText = ""
                                 articleImage = nil
@@ -283,7 +307,6 @@ class DocumentPickerCoordinator: NSObject, UIDocumentPickerDelegate {
         }
     }
 }
-
 
 struct ArticleTest_Previews: PreviewProvider {
     static var previews: some View {

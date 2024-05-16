@@ -42,7 +42,7 @@ class ArticleSaveViewModel: ObservableObject {
                     newArticles.append(article)
                 }
             }
-            newArticles.sort { $0.publishDate < $1.publishDate }
+            newArticles.sort { $0.publishDate > $1.publishDate }
             self.articles = newArticles
             
             for i in 0..<self.articles.count {
@@ -60,8 +60,88 @@ class ArticleSaveViewModel: ObservableObject {
         }
     }
 }
+/*
+struct SaveVC: View {
+    @State private var url: String = ""
+    @State private var progress: Float = 0.0
+    @State private var speed: Float = 0.0
+    
+    var body: some View {
+        VStack {
+            TextField("URL", text: $url)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            Button(action: {
+                downloadFile()
+            }, label: {
+                Text("Download file")
+            })
+            
+            if progress > 0 {
+                ProgressView("Download Progress", value: progress)
+                    .padding()
+                Text(String(format: "%.2f", speed) + " KB/s")
+                    .padding()
+            }
+        }
+    }
+    
+    func downloadFile() {
+        guard let downloadURL = URL(string: url) else {
+            print("Invalid URL")
+            return
+        }
+        
+        let task = URLSession.shared.downloadTask(with: downloadURL) { localURL, response, error in
+            if let error = error {
+                print("Error downloading file: \(error)")
+            } else if let localURL = localURL, let response = response {
+                do {
+                    let documentsURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                    let savedURL = documentsURL.appendingPathComponent(localURL.lastPathComponent)
+                    try FileManager.default.copyItem(at: localURL, to: savedURL)
+                    print("File downloaded successfully: \(savedURL)")
+                } catch {
+                    print("Error saving file: \(error)")
+                }
+                
+                if let fileSize = response.expectedContentLength as? Float {
+                    let savedURL = localURL.deletingLastPathComponent().appendingPathComponent(localURL.lastPathComponent)
+                    do {
+                        let attributes = try FileManager.default.attributesOfItem(atPath: savedURL.path)
+                        if let date = attributes[.modificationDate] as? Date {
+                            let time = Date().timeIntervalSince(date)
+                            let speed = fileSize / Float(time) / 1024.0
+                            DispatchQueue.main.async {
+                                self.speed = speed
+                            }
+                        }
+                    } catch {
+                        print("Error getting file attributes: \(error)")
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+        
+        DispatchQueue.main.async {
+            self.progress = 0.0
+        }
+        
+        let progressObserver = task.progress.observe(\.fractionCompleted) { progress, _ in
+            DispatchQueue.main.async {
+                self.progress = Float(progress.fractionCompleted)
+            }
+        }
+        progressObserver.invalidate()
+    }
+}
+*/
 
 struct SaveVC: View {
+    
     @ObservedObject var viewModel = ArticleSaveViewModel()
     @State private var searchText = ""
     
@@ -117,31 +197,14 @@ struct SaveVC: View {
         }
     }
 }
-/*
-struct SaveVC: View {
-    var body: some View {
-        NavigationView {
-            VStack {
-                ScrollView {
-                    NavigationLink(destination: ArticleListView(), label: {
-                        Image("Cesar")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 450, height: 230)
-                            .padding(5)
-                    })
-                }
-            }
-            .navigationTitle("Save")
-        }
-    }
-}
- */
 
 struct SettingVC: View {
     
     @EnvironmentObject var viewModel: AppViewModel
     @State private var showingPasswordReset = false
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationView {
@@ -232,11 +295,12 @@ struct SettingVC: View {
                 }
             }
             .navigationTitle("Настройки")
-            .foregroundColor(Color.primary)
+            .foregroundColor(colorScheme == .dark ? .white : .black)
             .background(Color.white)
             .sheet(isPresented: $showingPasswordReset, content: {PasswordResetView()
             })
         }
+        .accentColor(colorScheme == .dark ? .white : .black)
     }
 }
 
@@ -307,20 +371,17 @@ struct InterfaceView: View {
         }
         .navigationTitle("Mode switch")
         .foregroundColor(Color.primary)
-        .environment(\.font, Font.system(size: fontSize)) // set font size for all views in the view hierarchy
+        .environment(\.font, Font.system(size: fontSize))
         .onAppear {
-            // Restore saved font size on app launch
             if let savedFontSize = UserDefaults.standard.value(forKey: "fontSize") as? Double {
                 fontSize = savedFontSize
             }
         }
         .onChange(of: fontSize) { value in
-            // Save font size when changed
             UserDefaults.standard.set(value, forKey: "fontSize")
         }
     }
 }
-
 
 struct TabBarView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
@@ -330,21 +391,21 @@ struct TabBarView: View {
             ArticleListView()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Home")
+                    Text("Главная")
                 }
                 .foregroundColor(Color.primary)
             
             SaveVC()
                 .tabItem {
                     Image(systemName: "heart")
-                    Text("Save")
+                    Text("Избранные")
                 }
                 .foregroundColor(Color.primary)
             
             SettingVC()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("Settings")
+                    Text("Настройки")
                 }
                 .foregroundColor(Color.primary)
         }
@@ -361,25 +422,25 @@ struct AdminTabBar: View {
             ArticleListView()
                 .tabItem {
                     Image(systemName: "house")
-                    Text("Home")
+                    Text("Главная")
                 }
             
             SaveVC()
                 .tabItem {
                     Image(systemName: "heart")
-                    Text("Save")
+                    Text("Избранные")
                 }
             
             SettingVC()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("Settings")
+                    Text("Настройки")
                 }
             
             ArticleTest()
                 .tabItem {
                     Image(systemName: "pencil")
-                    Text("Article")
+                    Text("Добавить")
                 }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
